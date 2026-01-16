@@ -42,6 +42,4 @@ jobs:
 
           languages: yes
           languages.display: donut
-          languages.sections: most-used
-          languages.details: percentage
           languages.limit: 7
