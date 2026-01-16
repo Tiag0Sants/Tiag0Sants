@@ -1,12 +1,12 @@
 ## Hi there 👋
 <div align="center">
-  <table border="0">
+  <table style="border: none;">
     <tr>
-      <td>
-        <img src="https://raw.githubusercontent.com/Tiag0Sants/Tiag0Sants/main/header.svg" width="400" />
+      <td align="center" style="border: none;">
+        <img src="https://raw.githubusercontent.com/Tiag0Sants/Tiag0Sants/main/header.svg?v=5" width="400" alt="Stats e Hábitos" />
       </td>
-      <td>
-        <img src="https://raw.githubusercontent.com/Tiag0Sants/Tiag0Sants/main/languages.svg" width="400" />
+      <td align="center" style="border: none;">
+        <img src="https://raw.githubusercontent.com/Tiag0Sants/Tiag0Sants/main/languages.svg?v=5" width="400" alt="Linguagens Donut" />
       </td>
     </tr>
   </table>
