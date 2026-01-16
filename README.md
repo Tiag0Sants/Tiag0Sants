@@ -1,13 +1,13 @@
 <div align="center">
-  <table style="border: none;">
-    <tr>
-      <td align="center" style="border: none;">
-        <img src="https://github-readme-stats.vercel.app/api?username=Tiag0Sants&show_icons=true&theme=radical&hide_border=true&count_private=true" width="400" />
-      </td>
+  <h3>Minhas Linguagens (Gerado Automaticamente)</h3>
+  <img src="./languages.svg" width="300" alt="Gráfico de Linguagens" />
+</div>
 
-      <td align="center" style="border: none;">
-        <img src="./languages.svg" width="400" />
-      </td>
-    </tr>
-  </table>
+<div align="center">
+  <p>
+    <span style="color: #e34c26">●</span> HTML &nbsp;
+    <span style="color: #563d7c">●</span> CSS &nbsp;
+    <span style="color: #b07219">●</span> Java &nbsp;
+    <span style="color: #f1e05a">●</span> JS
+  </p>
 </div>
