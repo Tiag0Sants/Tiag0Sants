@@ -1,14 +1,20 @@
-// Arquivo: scripts/generate-donut.js
 const fs = require('fs');
 
 // Configurações
 const USERNAME = process.env.GITHUB_ACTOR || 'Tiag0Sants';
 const TOKEN = process.env.GITHUB_TOKEN;
-const OUTPUT_FILE = 'languages.svg';
 
-// Cores Fallback (caso a API não retorne alguma)
-const fallbackColors = {
-  HTML: "#e34c26", CSS: "#563d7c", Java: "#b07219", JavaScript: "#f1e05a", Python: "#3572A5", TypeScript: "#2b7489"
+// Cores para o Donut de Linguagens
+const langColors = {
+  HTML: "#e34c26", CSS: "#563d7c", Java: "#b07219", JavaScript: "#f1e05a", Python: "#3572A5", TypeScript: "#2b7489", Shell: "#89e051"
+};
+
+// Cores para o Donut de Stats (Atividade)
+const statColors = {
+  Commits: "#2ecc71", // Verde
+  PRs: "#3498db",     // Azul
+  Issues: "#e74c3c",  // Vermelho
+  Stars: "#f1c40f"    // Amarelo
 };
 
 async function fetchGitHubData() {
@@ -17,11 +23,18 @@ async function fetchGitHubData() {
       user(login: "${USERNAME}") {
         repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
           nodes {
+            stargazerCount
             languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
               edges { size node { name color } }
             }
           }
         }
+        contributionsCollection {
+          totalCommitContributions
+          totalPullRequestContributions
+          totalIssueContributions
+        }
+        followers { totalCount }
       }
     }
   `;
@@ -34,85 +47,125 @@ async function fetchGitHubData() {
   
   const json = await response.json();
   if (json.errors) throw new Error(JSON.stringify(json.errors));
-  return json.data.user.repositories.nodes;
+  return json.data.user;
+}
+
+function generateDonut(data, colors, title, centerText, subText) {
+    const total = Object.values(data).reduce((a, b) => a + b, 0);
+    let startAngle = 0;
+    let paths = '';
+    const cx = 100, cy = 100, r = 70; // Raio um pouco menor para caber texto
+
+    // Fundo do arco (cinza escuro)
+    paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#21262d" stroke-width="15" />`;
+
+    for (const [label, value] of Object.entries(data)) {
+        if (value === 0) continue;
+        const percent = value / total;
+        const angle = percent * 360;
+        
+        // Cálculo do Arco SVG
+        const r2 = r; // Raio do arco
+        const x1 = cx + r2 * Math.cos(Math.PI * (startAngle - 90) / 180);
+        const y1 = cy + r2 * Math.sin(Math.PI * (startAngle - 90) / 180);
+        const endAngle = startAngle + angle;
+        const x2 = cx + r2 * Math.cos(Math.PI * (endAngle - 90) / 180);
+        const y2 = cy + r2 * Math.sin(Math.PI * (endAngle - 90) / 180);
+        const largeArc = angle > 180 ? 1 : 0;
+
+        paths += `<path d="M${x1},${y1} A${r2},${r2} 0 ${largeArc},1 ${x2},${y2}" fill="none" stroke="${colors[label] || '#ccc'}" stroke-width="15" />`;
+        startAngle = endAngle;
+    }
+
+    return `
+    <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        .title { font: bold 16px 'Segoe UI', sans-serif; fill: #e6edf3; }
+        .center { font: bold 22px 'Segoe UI', sans-serif; fill: #e6edf3; }
+        .sub { font: 12px 'Segoe UI', sans-serif; fill: #8b949e; }
+        .legend { font: 12px 'Segoe UI', sans-serif; fill: #e6edf3; }
+      </style>
+      
+      <text x="150" y="20" text-anchor="middle" class="title">${title}</text>
+      
+      <g transform="translate(50, 20)">
+        ${paths}
+        <text x="100" y="95" text-anchor="middle" class="center">${centerText}</text>
+        <text x="100" y="115" text-anchor="middle" class="sub">${subText}</text>
+      </g>
+
+      <g transform="translate(210, 80)">
+         ${Object.keys(data).map((key, i) => `
+            <circle cx="0" cy="${i*20}" r="5" fill="${colors[key] || '#ccc'}" />
+            <text x="10" y="${i*20+4}" class="legend">${key}</text>
+         `).join('')}
+      </g>
+    </svg>
+    `;
 }
 
 async function main() {
-  console.log(`🔍 Buscando dados para: ${USERNAME}...`);
-  const repos = await fetchGitHubData();
+  console.log(`🔍 Buscando dados...`);
+  const data = await fetchGitHubData();
   
-  // 1. Processar e Somar Bytes
-  const stats = {};
-  const colors = {};
+  // --- 1. DADOS DE LINGUAGENS ---
+  const langStats = {};
   let totalBytes = 0;
-
-  repos.forEach(repo => {
+  data.repositories.nodes.forEach(repo => {
     repo.languages.edges.forEach(({ size, node }) => {
-      stats[node.name] = (stats[node.name] || 0) + size;
-      colors[node.name] = node.color || fallbackColors[node.name] || '#ccc';
+      langStats[node.name] = (langStats[node.name] || 0) + size;
       totalBytes += size;
     });
   });
 
-  // 2. Filtrar Top 5 e Agrupar "Outros"
-  let sorted = Object.entries(stats).sort(([, a], [, b]) => b - a);
-  let topLangs = sorted.slice(0, 5);
-  const others = sorted.slice(5).reduce((acc, [, val]) => acc + val, 0);
+  // Filtrar Top 5
+  const topLangs = Object.entries(langStats)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 5)
+    .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {});
+
+  // --- 2. DADOS DE STATS (Commits, PRs, Issues) ---
+  const activityStats = {
+    Commits: data.contributionsCollection.totalCommitContributions,
+    PRs: data.contributionsCollection.totalPullRequestContributions,
+    Issues: data.contributionsCollection.totalIssueContributions
+  };
   
-  if (others > 0) {
-    topLangs.push(['Others', others]);
-    colors['Others'] = '#7f8c8d';
-  }
+  // Calcular totais extras
+  const totalStars = data.repositories.nodes.reduce((acc, repo) => acc + repo.stargazerCount, 0);
+  const totalRepos = data.repositories.nodes.length;
+  const totalContribs = activityStats.Commits + activityStats.PRs + activityStats.Issues;
 
-  // 3. Gerar SVG (Lógica de Donut)
-  let startAngle = 0;
-  let paths = '';
-  const cx = 100, cy = 100, r = 80; // Centro e Raio
-
-  topLangs.forEach(([lang, bytes]) => {
-    const percent = bytes / totalBytes;
-    const angle = percent * 360;
-    
-    // Ajuste matemático para desenhar o arco
-    const endAngle = startAngle + angle;
-    const x1 = cx + r * Math.cos(Math.PI * startAngle / 180);
-    const y1 = cy + r * Math.sin(Math.PI * startAngle / 180);
-    const x2 = cx + r * Math.cos(Math.PI * endAngle / 180);
-    const y2 = cy + r * Math.sin(Math.PI * endAngle / 180);
-    
-    // Se for 100% (círculo completo), o path muda um pouco, mas para stats raramente é.
-    const largeArc = angle > 180 ? 1 : 0;
-    
-    paths += `<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${largeArc},1 ${x2},${y2} Z" fill="${colors[lang]}" stroke="#0d1117" stroke-width="2"/>`;
-    
-    startAngle = endAngle;
-  });
-
-  // Legenda (Opcional - mas fica bonito)
-  // Vamos simplificar e deixar só o Donut puro e limpo como você queria
+  // --- 3. GERAR OS DOIS SVGs ---
   
-  const svgContent = `
-    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <style>path { transition: 0.3s; } path:hover { opacity: 0.8; }</style>
-      <circle cx="100" cy="100" r="100" fill="#0d1117" />
-      
-      <g transform="rotate(-90 100 100)">
-        ${paths}
-      </g>
-      
-      <circle cx="100" cy="100" r="50" fill="#0d1117" />
-      
-      <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#e6edf3" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="20">
-        ${topLangs.length} Langs
-      </text>
-    </svg>
-  `;
+  // SVG 1: Linguagens
+  const svgLangs = generateDonut(
+    topLangs, 
+    langColors, 
+    "Linguagens Mais Usadas", 
+    Object.keys(topLangs).length, 
+    "Linguagens"
+  );
+  fs.writeFileSync('languages.svg', svgLangs);
+  console.log("✅ languages.svg gerado!");
 
-  fs.writeFileSync(OUTPUT_FILE, svgContent);
-  console.log(`✅ SVG gerado com sucesso: ${OUTPUT_FILE}`);
+  // SVG 2: Stats (Atividade)
+  const svgStats = generateDonut(
+    activityStats, 
+    statColors, 
+    "Atividade & Stats", 
+    totalContribs, 
+    "Contribuições"
+  );
+  
+  // Adicionar texto extra de Repos e Stars no SVG de Stats manualmente (Hackzinho visual)
+  const finalStatsSVG = svgStats.replace('</svg>', `
+    <text x="210" y="160" class="legend">⭐ ${totalStars} Stars</text>
+    <text x="210" y="180" class="legend">📚 ${totalRepos} Repos</text>
+  </svg>`);
+
+  fs.writeFileSync('stats.svg', finalStatsSVG);
+  console.log("✅ stats.svg gerado!");
 }
 
-main().catch(err => {
-  console.error(err);
-  process.exit(1);
-});
+main().catch(console.error);
