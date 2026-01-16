@@ -1,16 +1,37 @@
 
-    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <style>path { transition: 0.3s; } path:hover { opacity: 0.8; }</style>
-      <circle cx="100" cy="100" r="100" fill="#0d1117" />
+    <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        .title { font: bold 16px 'Segoe UI', sans-serif; fill: #e6edf3; }
+        .center { font: bold 22px 'Segoe UI', sans-serif; fill: #e6edf3; }
+        .sub { font: 12px 'Segoe UI', sans-serif; fill: #8b949e; }
+        .legend { font: 12px 'Segoe UI', sans-serif; fill: #e6edf3; }
+      </style>
       
-      <g transform="rotate(-90 100 100)">
-        <path d="M100,100 L180,100 A80,80 0 0,1 22.35010813195599,119.2482283049914 Z" fill="#e34c26" stroke="#0d1117" stroke-width="2"/><path d="M100,100 L22.35010813195599,119.2482283049914 A80,80 0 0,1 158.3595920432084,45.2811000060282 Z" fill="#663399" stroke="#0d1117" stroke-width="2"/><path d="M100,100 L158.3595920432084,45.2811000060282 A80,80 0 0,1 179.45435802071574,90.67235337740945 Z" fill="#b07219" stroke="#0d1117" stroke-width="2"/><path d="M100,100 L179.45435802071574,90.67235337740945 A80,80 0 0,1 179.95849231751856,97.42327605100431 Z" fill="#f1e05a" stroke="#0d1117" stroke-width="2"/><path d="M100,100 L179.95849231751856,97.42327605100431 A80,80 0 0,1 180,99.99999999999999 Z" fill="#3572A5" stroke="#0d1117" stroke-width="2"/>
+      <text x="150" y="20" text-anchor="middle" class="title">Linguagens Mais Usadas</text>
+      
+      <g transform="translate(50, 20)">
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#21262d" stroke-width="15" /><path d="M100,30 A70,70 0 0,1 117.513239717772,167.7737886987872" fill="none" stroke="#e34c26" stroke-width="15" /><path d="M117.513239717772,167.7737886987872 A70,70 0 0,1 51.16616951256918,49.84766206920288" fill="none" stroke="#563d7c" stroke-width="15" /><path d="M51.16616951256918,49.84766206920288 A70,70 0 0,1 90.37770190520672,30.664501304346715" fill="none" stroke="#b07219" stroke-width="15" /><path d="M90.37770190520672,30.664501304346715 A70,70 0 0,1 97.75305566140146,30.036071857426137" fill="none" stroke="#f1e05a" stroke-width="15" /><path d="M97.75305566140146,30.036071857426137 A70,70 0 0,1 99.99999999999999,30" fill="none" stroke="#3572A5" stroke-width="15" />
+        <text x="100" y="95" text-anchor="middle" class="center">5</text>
+        <text x="100" y="115" text-anchor="middle" class="sub">Linguagens</text>
       </g>
-      
-      <circle cx="100" cy="100" r="50" fill="#0d1117" />
-      
-      <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#e6edf3" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="20">
-        5 Langs
-      </text>
+
+      <g transform="translate(210, 80)">
+         
+            <circle cx="0" cy="0" r="5" fill="#e34c26" />
+            <text x="10" y="4" class="legend">HTML</text>
+         
+            <circle cx="0" cy="20" r="5" fill="#563d7c" />
+            <text x="10" y="24" class="legend">CSS</text>
+         
+            <circle cx="0" cy="40" r="5" fill="#b07219" />
+            <text x="10" y="44" class="legend">Java</text>
+         
+            <circle cx="0" cy="60" r="5" fill="#f1e05a" />
+            <text x="10" y="64" class="legend">JavaScript</text>
+         
+            <circle cx="0" cy="80" r="5" fill="#3572A5" />
+            <text x="10" y="84" class="legend">Python</text>
+         
+      </g>
     </svg>
-  
+    
