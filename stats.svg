@@ -9,31 +9,31 @@
       </style>
       <rect width="400" height="200" class="bg" rx="10" />
       
-      <text x="200" y="25" text-anchor="middle" class="title">Minhas Contribuições</text>
+      <text x="200" y="25" text-anchor="middle" class="title">My Contributions</text>
       
       <g transform="translate(40, 20)">
         <circle cx="100" cy="100" r="70" fill="none" stroke="#21262d" stroke-width="15" />
-        <circle cx="100" cy="100" r="70" fill="none" stroke="#2ecc71" stroke-width="15" />
-        <text x="100" y="95" text-anchor="middle" class="center">80</text>
+        <path d="M100,30 A70,70 0 1,1 55.82384389717628,45.70020965069063" fill="none" stroke="#2ecc71" stroke-width="15" /><path d="M55.82384389717628,45.70020965069063 A70,70 0 0,1 67.79544735881936,37.848034711833726" fill="none" stroke="#f1c40f" stroke-width="15" /><path d="M67.79544735881936,37.848034711833726 A70,70 0 0,1 99.99999999999999,30" fill="none" stroke="#6f42c1" stroke-width="15" />
+        <text x="100" y="95" text-anchor="middle" class="center">82</text>
         <text x="100" y="115" text-anchor="middle" class="sub">Total</text>
       </g>
 
-      <g transform="translate(250, 70)">
+      <g transform="translate(250, 60)">
          
             <circle cx="0" cy="0" r="5" fill="#2ecc71" />
-            <text x="15" y="4" class="legend">Commits</text>
+            <text x="15" y="4" class="legend">Commits: 82</text>
          
             <circle cx="0" cy="22" r="5" fill="#3498db" />
-            <text x="15" y="26" class="legend">PRs</text>
+            <text x="15" y="26" class="legend">PRs: 0</text>
          
             <circle cx="0" cy="44" r="5" fill="#e74c3c" />
-            <text x="15" y="48" class="legend">Issues</text>
+            <text x="15" y="48" class="legend">Issues: 0</text>
          
+            <circle cx="0" cy="66" r="5" fill="#f1c40f" />
+            <text x="15" y="70" class="legend">Stars: 3</text>
          
-    <g transform="translate(0, 76)">
-      <text x="0" y="0" class="legend">&#11088; 3 Stars</text>
-      <text x="0" y="22" class="legend">&#128218; 7 Repos</text>
-    </g>
-  
+            <circle cx="0" cy="88" r="5" fill="#6f42c1" />
+            <text x="15" y="92" class="legend">Repos: 7</text>
+         
       </g>
     </svg>

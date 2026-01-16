@@ -9,32 +9,31 @@
       </style>
       <rect width="400" height="200" class="bg" rx="10" />
       
-      <text x="200" y="25" text-anchor="middle" class="title">Top Linguagens</text>
+      <text x="200" y="25" text-anchor="middle" class="title">Top Languages</text>
       
       <g transform="translate(40, 20)">
         <circle cx="100" cy="100" r="70" fill="none" stroke="#21262d" stroke-width="15" />
-        <path d="M100,30 A70,70 0 0,1 117.37009239121853,167.8106178287776" fill="none" stroke="#e34c26" stroke-width="15" /><path d="M117.37009239121853,167.8106178287776 A70,70 0 0,1 51.36860100214557,49.65134528598124" fill="none" stroke="#563d7c" stroke-width="15" /><path d="M51.36860100214557,49.65134528598124 A70,70 0 0,1 90.68925354906742,30.62197753952303" fill="none" stroke="#b07219" stroke-width="15" /><path d="M90.68925354906742,30.62197753952303 A70,70 0 0,1 97.75141378209263,30.036124606904195" fill="none" stroke="#f1e05a" stroke-width="15" /><path d="M97.75141378209263,30.036124606904195 A70,70 0 0,1 99.99999999999999,30" fill="none" stroke="#3572A5" stroke-width="15" />
+        <path d="M100,30 A70,70 0 0,1 117.31985601592828,167.82346634895265" fill="none" stroke="#e34c26" stroke-width="15" /><path d="M117.31985601592828,167.82346634895265 A70,70 0 0,1 51.43980383407634,49.58266817524936" fill="none" stroke="#563d7c" stroke-width="15" /><path d="M51.43980383407634,49.58266817524936 A70,70 0 0,1 90.79859485974916,30.607391290966987" fill="none" stroke="#b07219" stroke-width="15" /><path d="M90.79859485974916,30.607391290966987 A70,70 0 0,1 97.75083778921928,30.036143121254412" fill="none" stroke="#f1e05a" stroke-width="15" /><path d="M97.75083778921928,30.036143121254412 A70,70 0 0,1 99.99999999999999,30" fill="none" stroke="#3572A5" stroke-width="15" />
         <text x="100" y="95" text-anchor="middle" class="center">5</text>
         <text x="100" y="115" text-anchor="middle" class="sub">Langs</text>
       </g>
 
-      <g transform="translate(250, 70)">
+      <g transform="translate(250, 60)">
          
             <circle cx="0" cy="0" r="5" fill="#e34c26" />
-            <text x="15" y="4" class="legend">HTML</text>
+            <text x="15" y="4" class="legend">HTML: 269394</text>
          
             <circle cx="0" cy="22" r="5" fill="#563d7c" />
-            <text x="15" y="26" class="legend">CSS</text>
+            <text x="15" y="26" class="legend">CSS: 244557</text>
          
             <circle cx="0" cy="44" r="5" fill="#b07219" />
-            <text x="15" y="48" class="legend">Java</text>
+            <text x="15" y="48" class="legend">Java: 59142</text>
          
             <circle cx="0" cy="66" r="5" fill="#f1e05a" />
-            <text x="15" y="70" class="legend">JavaScript</text>
+            <text x="15" y="70" class="legend">JavaScript: 9288</text>
          
             <circle cx="0" cy="88" r="5" fill="#3572A5" />
-            <text x="15" y="92" class="legend">Python</text>
-         
+            <text x="15" y="92" class="legend">Python: 2994</text>
          
       </g>
     </svg>
