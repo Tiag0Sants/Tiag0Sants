@@ -1,6 +1,15 @@
 ## Hi there 👋
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Tiag0Sants/Tiag0Sants/main/github-metrics.svg?v=3" width="800">
+  <table border="0">
+    <tr>
+      <td>
+        <img src="https://raw.githubusercontent.com/Tiag0Sants/Tiag0Sants/main/header.svg" width="400" />
+      </td>
+      <td>
+        <img src="https://raw.githubusercontent.com/Tiag0Sants/Tiag0Sants/main/languages.svg" width="400" />
+      </td>
+    </tr>
+  </table>
 </div>
 
 <!--
