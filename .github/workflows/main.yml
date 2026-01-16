@@ -6,28 +6,47 @@ jobs:
   github-metrics:
     runs-on: ubuntu-latest
     steps:
-      # Primeiro cartão: Status Gerais
-      - name: Header and Stats
+      
+      # -----------------------------------------------------------------
+      # CARTÃO 1: Stats Gerais + Gráfico Redondo de Horários (Habits)
+      # -----------------------------------------------------------------
+      - name: Header and Habits (Round Clock)
         uses: lowlighter/metrics@latest
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: Tiag0Sants
           template: classic
-          base: header, repositories
           filename: header.svg
           config_timezone: America/Sao_Paulo
+          
+          # Base limpa (apenas stats principais)
+          base: header
+          base_extracolumn: no
+          
+          # O Gráfico Redondo de Hábitos
+          plugin_habits: yes
+          plugin_habits_facts: no
+          plugin_habits_charts: yes # Cria o gráfico circular de relógio
+          config_order: header, habits
 
-      # Segundo cartão: Linguagens com Gráfico Circular (Indepth)
+      # -----------------------------------------------------------------
+      # CARTÃO 2: Linguagens com Gráfico de Rosca (Donut)
+      # -----------------------------------------------------------------
       - name: Language Donuts
         uses: lowlighter/metrics@latest
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: Tiag0Sants
           template: classic
-          base: ""
           filename: languages.svg
+          config_timezone: America/Sao_Paulo
+          
+          # Remove a base para ficar só o gráfico
+          base: ""
+          
+          # O Gráfico Redondo de Linguagens
           plugin_languages: yes
-          plugin_languages_indepth: yes # Gera o gráfico circular (donut)
+          plugin_languages_indepth: yes # Transforma em gráfico de rosca
           plugin_languages_sections: most-used
           plugin_languages_details: percentage
-          config_timezone: America/Sao_Paulo
+          plugin_languages_limit: 7
