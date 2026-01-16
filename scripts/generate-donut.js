@@ -30,9 +30,8 @@ async function fetchGitHubData() {
   return json.data.user;
 }
 
-// Função de Desenho Melhorada (Sem gambiarras de replace)
 function generateDonut(data, colors, title, centerText, subText, extraHTML = '') {
-    const total = Object.values(data).reduce((a, b) => a + b, 0) || 1; // Evita divisão por zero
+    const total = Object.values(data).reduce((a, b) => a + b, 0) || 1;
     let startAngle = 0;
     let paths = '';
     const cx = 100, cy = 100, r = 70;
@@ -41,8 +40,9 @@ function generateDonut(data, colors, title, centerText, subText, extraHTML = '')
         if (value <= 0) continue;
         const percent = value / total;
         const angle = percent * 360;
-        if (angle === 360) {
-            // Caso seja 100% (círculo completo)
+        
+        // Ajuste para círculo completo ou arcos parciais
+        if (angle >= 359.9) {
             paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${colors[label] || '#ccc'}" stroke-width="15" />`;
         } else {
             const rRad = Math.PI / 180;
@@ -57,7 +57,7 @@ function generateDonut(data, colors, title, centerText, subText, extraHTML = '')
         }
     }
 
-    // SVG Montado Corretamente
+    // SVG com Espaçamento Corrigido
     return `
     <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
       <style>
@@ -71,14 +71,14 @@ function generateDonut(data, colors, title, centerText, subText, extraHTML = '')
       
       <text x="200" y="25" text-anchor="middle" class="title">${title}</text>
       
-      <g transform="translate(60, 20)">
+      <g transform="translate(40, 20)">
         <circle cx="100" cy="100" r="70" fill="none" stroke="#21262d" stroke-width="15" />
         ${paths}
         <text x="100" y="95" text-anchor="middle" class="center">${centerText}</text>
         <text x="100" y="115" text-anchor="middle" class="sub">${subText}</text>
       </g>
 
-      <g transform="translate(240, 70)">
+      <g transform="translate(250, 70)">
          ${Object.keys(data).map((key, i) => `
             <circle cx="0" cy="${i*22}" r="5" fill="${colors[key] || '#ccc'}" />
             <text x="15" y="${i*22+4}" class="legend">${key}</text>
@@ -99,7 +99,7 @@ async function main() {
   const topLangs = Object.entries(langStats).sort((a,b)=>b[1]-a[1]).slice(0,5).reduce((obj, [k,v]) => ({...obj, [k]:v}), {});
   
   fs.writeFileSync('languages.svg', generateDonut(topLangs, langColors, "Top Linguagens", Object.keys(topLangs).length, "Langs"));
-  console.log("✅ languages.svg ok");
+  console.log("✅ languages.svg espaçado ok");
 
   // 2. Stats Gerais
   const stats = {
@@ -110,7 +110,6 @@ async function main() {
   const totalStars = data.repositories.nodes.reduce((acc, r) => acc + r.stargazerCount, 0);
   const totalRepos = data.repositories.nodes.length;
   
-  // HTML Extra injetado de forma limpa (Usei entidades HTML para os ícones para evitar erro de encoding)
   const extraHTML = `
     <g transform="translate(0, ${(Object.keys(stats).length * 22) + 10})">
       <text x="0" y="0" class="legend">&#11088; ${totalStars} Stars</text>
@@ -119,7 +118,7 @@ async function main() {
   `;
 
   fs.writeFileSync('stats.svg', generateDonut(stats, statColors, "Minhas Contribuições", Object.values(stats).reduce((a,b)=>a+b,0), "Total", extraHTML));
-  console.log("✅ stats.svg ok");
+  console.log("✅ stats.svg espaçado ok");
 }
 
 main().catch(console.error);
