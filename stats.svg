@@ -11,14 +11,14 @@
       
       <text x="200" y="25" text-anchor="middle" class="title">Minhas Contribuições</text>
       
-      <g transform="translate(60, 20)">
+      <g transform="translate(40, 20)">
         <circle cx="100" cy="100" r="70" fill="none" stroke="#21262d" stroke-width="15" />
         <circle cx="100" cy="100" r="70" fill="none" stroke="#2ecc71" stroke-width="15" />
-        <text x="100" y="95" text-anchor="middle" class="center">77</text>
+        <text x="100" y="95" text-anchor="middle" class="center">80</text>
         <text x="100" y="115" text-anchor="middle" class="sub">Total</text>
       </g>
 
-      <g transform="translate(240, 70)">
+      <g transform="translate(250, 70)">
          
             <circle cx="0" cy="0" r="5" fill="#2ecc71" />
             <text x="15" y="4" class="legend">Commits</text>

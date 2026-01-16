@@ -11,14 +11,14 @@
       
       <text x="200" y="25" text-anchor="middle" class="title">Top Linguagens</text>
       
-      <g transform="translate(60, 20)">
+      <g transform="translate(40, 20)">
         <circle cx="100" cy="100" r="70" fill="none" stroke="#21262d" stroke-width="15" />
         <path d="M100,30 A70,70 0 0,1 117.37009239121853,167.8106178287776" fill="none" stroke="#e34c26" stroke-width="15" /><path d="M117.37009239121853,167.8106178287776 A70,70 0 0,1 51.36860100214557,49.65134528598124" fill="none" stroke="#563d7c" stroke-width="15" /><path d="M51.36860100214557,49.65134528598124 A70,70 0 0,1 90.68925354906742,30.62197753952303" fill="none" stroke="#b07219" stroke-width="15" /><path d="M90.68925354906742,30.62197753952303 A70,70 0 0,1 97.75141378209263,30.036124606904195" fill="none" stroke="#f1e05a" stroke-width="15" /><path d="M97.75141378209263,30.036124606904195 A70,70 0 0,1 99.99999999999999,30" fill="none" stroke="#3572A5" stroke-width="15" />
         <text x="100" y="95" text-anchor="middle" class="center">5</text>
         <text x="100" y="115" text-anchor="middle" class="sub">Langs</text>
       </g>
 
-      <g transform="translate(240, 70)">
+      <g transform="translate(250, 70)">
          
             <circle cx="0" cy="0" r="5" fill="#e34c26" />
             <text x="15" y="4" class="legend">HTML</text>
