@@ -1,0 +1,25 @@
+name: Metrics
+on:
+  # Agenda para rodar todo dia à meia-noite (Horário UTC)
+  schedule: [{cron: "0 0 * * *"}]
+  # Permite que você rode manualmente para testar
+  workflow_dispatch:
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          # Aqui ele usa a chave (secret) que você salvou
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: Tiag0Sants
+          template: classic
+          base: header, community, repositories, metadata
+          config_timezone: America/Sao_Paulo
+          # Plugin de linguagens (most used languages)
+          plugin_languages: yes
+          plugin_languages_sections: most-used
+          plugin_languages_details: percentage
+          # Plugin de conquistas (badges bonitos)
+          plugin_achievements: yes
+          plugin_achievements_threshold: B
