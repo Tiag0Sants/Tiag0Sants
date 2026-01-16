@@ -1,12 +1,13 @@
 <div align="center">
+  <h3>📊 Meus Dados & Linguagens</h3>
   <table style="border: none;">
     <tr>
       <td align="center" style="border: none;">
-        <img src="./stats.svg" width="400" alt="Stats Donut" />
+        <img src="https://raw.githubusercontent.com/Tiag0Sants/Tiag0Sants/main/stats.svg?v=final" width="400" alt="Stats Donut" />
       </td>
 
       <td align="center" style="border: none;">
-        <img src="./languages.svg" width="400" alt="Linguagens Donut" />
+        <img src="https://raw.githubusercontent.com/Tiag0Sants/Tiag0Sants/main/languages.svg?v=final" width="400" alt="Linguagens Donut" />
       </td>
     </tr>
   </table>
