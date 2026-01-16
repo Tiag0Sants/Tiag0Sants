@@ -1,13 +1,20 @@
 <div align="center">
-  <h3>Minhas Linguagens (Gerado Automaticamente)</h3>
-  <img src="./languages.svg" width="300" alt="Gráfico de Linguagens" />
+  <table style="border: none;">
+    <tr>
+      <td align="center" style="border: none;">
+        <img src="./stats.svg" width="400" alt="Stats Donut" />
+      </td>
+
+      <td align="center" style="border: none;">
+        <img src="./languages.svg" width="400" alt="Linguagens Donut" />
+      </td>
+    </tr>
+  </table>
 </div>
 
 <div align="center">
-  <p>
-    <span style="color: #e34c26">●</span> HTML &nbsp;
-    <span style="color: #563d7c">●</span> CSS &nbsp;
-    <span style="color: #b07219">●</span> Java &nbsp;
-    <span style="color: #f1e05a">●</span> JS
-  </p>
+  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
 </div>
