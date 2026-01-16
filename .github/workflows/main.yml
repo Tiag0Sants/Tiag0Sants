@@ -14,7 +14,7 @@ jobs:
       # CARD 1 — STATUS GERAL
       # -------------------------------------------------
       - name: General Stats
-        uses: lowlighter/metrics@latest
+        uses: lowlighter/metrics@v3.34
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: Tiag0Sants
@@ -26,21 +26,19 @@ jobs:
           base: header, repositories
 
       # -------------------------------------------------
-      # CARD 2 — LINGUAGENS (DONUT REAL)
+      # CARD 2 — LINGUAGENS (DONUT FUNCIONAL)
       # -------------------------------------------------
       - name: Language Donut
-        uses: lowlighter/metrics@latest
+        uses: lowlighter/metrics@v3.34
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: Tiag0Sants
-          template: minimal
+          template: classic
           filename: languages.svg
           theme: dark
           config_timezone: America/Sao_Paulo
 
           base: ""
-
-          plugins_errors_fatal: yes
 
           languages: yes
           languages.display: donut
