@@ -6,7 +6,7 @@
       <img src="./header.svg" width="400" alt="Stats Gerais" />
     </td>
     <td align="center">
-      <img src="./languages.svg" width="400" alt="Linguagens Mais Usadas" />
+      <img src="./languages.svg" width="420" alt="Linguagens (Donut)" />
     </td>
   </tr>
 </table>
