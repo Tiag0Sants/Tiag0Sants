@@ -3,11 +3,19 @@ const fs = require('fs');
 const USERNAME = process.env.GITHUB_ACTOR || 'Tiag0Sants';
 const TOKEN = process.env.GITHUB_TOKEN;
 
-// Cores
+// Cores (Adicionei cor para Repos)
 const langColors = {
   HTML: "#e34c26", CSS: "#563d7c", Java: "#b07219", JavaScript: "#f1e05a", Python: "#3572A5", TypeScript: "#2b7489", Shell: "#89e051"
 };
-const statColors = { Commits: "#2ecc71", PRs: "#3498db", Issues: "#e74c3c", Stars: "#f1c40f" };
+
+// Cores dos Stats (Agora com Repos Roxo e Stars Amarelo)
+const statColors = { 
+  Commits: "#2ecc71", // Verde
+  PRs: "#3498db",     // Azul
+  Issues: "#e74c3c",  // Vermelho
+  Stars: "#f1c40f",   // Amarelo
+  Repos: "#6f42c1"    // Roxo
+};
 
 async function fetchGitHubData() {
   const query = `
@@ -30,7 +38,7 @@ async function fetchGitHubData() {
   return json.data.user;
 }
 
-function generateDonut(data, colors, title, centerText, subText, extraHTML = '') {
+function generateDonut(data, colors, title, centerText, subText) {
     const total = Object.values(data).reduce((a, b) => a + b, 0) || 1;
     let startAngle = 0;
     let paths = '';
@@ -41,7 +49,6 @@ function generateDonut(data, colors, title, centerText, subText, extraHTML = '')
         const percent = value / total;
         const angle = percent * 360;
         
-        // Ajuste para círculo completo ou arcos parciais
         if (angle >= 359.9) {
             paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${colors[label] || '#ccc'}" stroke-width="15" />`;
         } else {
@@ -57,7 +64,6 @@ function generateDonut(data, colors, title, centerText, subText, extraHTML = '')
         }
     }
 
-    // SVG com Espaçamento Corrigido
     return `
     <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
       <style>
@@ -78,12 +84,11 @@ function generateDonut(data, colors, title, centerText, subText, extraHTML = '')
         <text x="100" y="115" text-anchor="middle" class="sub">${subText}</text>
       </g>
 
-      <g transform="translate(250, 70)">
+      <g transform="translate(250, 60)">
          ${Object.keys(data).map((key, i) => `
             <circle cx="0" cy="${i*22}" r="5" fill="${colors[key] || '#ccc'}" />
-            <text x="15" y="${i*22+4}" class="legend">${key}</text>
+            <text x="15" y="${i*22+4}" class="legend">${key}: ${data[key]}</text>
          `).join('')}
-         ${extraHTML}
       </g>
     </svg>`;
 }
@@ -98,27 +103,28 @@ async function main() {
   });
   const topLangs = Object.entries(langStats).sort((a,b)=>b[1]-a[1]).slice(0,5).reduce((obj, [k,v]) => ({...obj, [k]:v}), {});
   
-  fs.writeFileSync('languages.svg', generateDonut(topLangs, langColors, "Top Linguagens", Object.keys(topLangs).length, "Langs"));
-  console.log("✅ languages.svg espaçado ok");
+  // Gera donut de Linguagens
+  fs.writeFileSync('languages.svg', generateDonut(topLangs, langColors, "Top Languages", Object.keys(topLangs).length, "Langs"));
+  console.log("✅ languages.svg ok");
 
-  // 2. Stats Gerais
+  // 2. Stats Gerais (Agora INCLUINDO Stars e Repos no objeto principal)
+  const totalStars = data.repositories.nodes.reduce((acc, r) => acc + r.stargazerCount, 0);
+  const totalRepos = data.repositories.nodes.length;
+
   const stats = {
     Commits: data.contributionsCollection.totalCommitContributions,
     PRs: data.contributionsCollection.totalPullRequestContributions,
-    Issues: data.contributionsCollection.totalIssueContributions
+    Issues: data.contributionsCollection.totalIssueContributions,
+    Stars: totalStars, // Agora entra no gráfico!
+    Repos: totalRepos  // Agora entra no gráfico!
   };
-  const totalStars = data.repositories.nodes.reduce((acc, r) => acc + r.stargazerCount, 0);
-  const totalRepos = data.repositories.nodes.length;
   
-  const extraHTML = `
-    <g transform="translate(0, ${(Object.keys(stats).length * 22) + 10})">
-      <text x="0" y="0" class="legend">&#11088; ${totalStars} Stars</text>
-      <text x="0" y="22" class="legend">&#128218; ${totalRepos} Repos</text>
-    </g>
-  `;
+  // Cálculo do total apenas de contribuições reais para o centro (para não somar maçãs com bananas)
+  const totalActivity = stats.Commits + stats.PRs + stats.Issues;
 
-  fs.writeFileSync('stats.svg', generateDonut(stats, statColors, "Minhas Contribuições", Object.values(stats).reduce((a,b)=>a+b,0), "Total", extraHTML));
-  console.log("✅ stats.svg espaçado ok");
+  // Gera donut de Stats (Título em Inglês)
+  fs.writeFileSync('stats.svg', generateDonut(stats, statColors, "My Contributions", totalActivity, "Total"));
+  console.log("✅ stats.svg ok");
 }
 
 main().catch(console.error);
