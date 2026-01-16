@@ -1,8 +1,6 @@
 name: Metrics
 on:
-  # Agenda para rodar todo dia à meia-noite (Horário UTC)
   schedule: [{cron: "0 0 * * *"}]
-  # Permite que você rode manualmente para testar
   workflow_dispatch:
 jobs:
   github-metrics:
@@ -10,16 +8,28 @@ jobs:
     steps:
       - uses: lowlighter/metrics@latest
         with:
-          # Aqui ele usa a chave (secret) que você salvou
           token: ${{ secrets.METRICS_TOKEN }}
           user: Tiag0Sants
           template: classic
-          base: header, community, repositories, metadata
+          base: header, repositories
           config_timezone: America/Sao_Paulo
-          # Plugin de linguagens (most used languages)
+          
+          # Visual Horizontal e Minimalista
+          base_extracolumn: no
+          layout: columns
+          
+          # Gráfico de Linguagens (Estilo Ballerini)
           plugin_languages: yes
           plugin_languages_sections: most-used
           plugin_languages_details: percentage
-          # Plugin de conquistas (badges bonitos)
+          plugin_languages_indepth: yes # Dá mais detalhes estéticos
+          
+          # Achievements Compactos (embaixo, sem ocupar espaço)
           plugin_achievements: yes
-          plugin_achievements_threshold: B
+          plugin_achievements_display: compact
+          plugin_achievements_threshold: C
+          
+          # Cores e Estilo
+          config_padding: 0, 8%
+          output_action: commit
+          committer_message: "chore: update metrics"
