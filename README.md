@@ -1,5 +1,7 @@
 ## Hi there 👋
-![Metrics](https://raw.githubusercontent.com/Tiag0Sants/Tiag0Sants/main/github-metrics.svg?v=2)
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Tiag0Sants/Tiag0Sants/main/github-metrics.svg?v=3" width="800">
+</div>
 
 <!--
 **Tiag0Sants/Tiag0Sants** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
