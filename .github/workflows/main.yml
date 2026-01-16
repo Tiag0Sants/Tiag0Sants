@@ -11,14 +11,22 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           user: Tiag0Sants
           template: classic
-          base: header, repositories
+          
+          # Remove os detalhes pesados e foca no cabeçalho e linguagens
+          base: header
           base_extracolumn: no
-          config_timezone: America/Sao_Paulo
           
-          # Desativando o plugin de erro para limpar o visual
-          plugin_achievements: no
+          # Força o layout horizontal
+          layout: columns
           
-          # Forçando o layout de linguagens mais limpo
+          # Gráfico de Linguagens (Estético)
           plugin_languages: yes
           plugin_languages_sections: most-used
           plugin_languages_details: percentage
+          plugin_languages_limit: 8
+          
+          # Conquistas em uma linha só (bem pequenas)
+          plugin_achievements: yes
+          plugin_achievements_display: compact
+          
+          config_timezone: America/Sao_Paulo
