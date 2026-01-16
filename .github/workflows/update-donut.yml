@@ -29,7 +29,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add languages.svg
+          # Adiciona os dois arquivos gerados pelo script
+          git add languages.svg stats.svg
           # Só commita se houver mudança
-          git commit -m "chore: update languages donut stats" || exit 0
+          git commit -m "chore: update donut charts" || exit 0
           git push
