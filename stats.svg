@@ -1,34 +1,39 @@
 
-    <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+    <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
       <style>
+        .bg { fill: #0d1117; }
         .title { font: bold 16px 'Segoe UI', sans-serif; fill: #e6edf3; }
         .center { font: bold 22px 'Segoe UI', sans-serif; fill: #e6edf3; }
         .sub { font: 12px 'Segoe UI', sans-serif; fill: #8b949e; }
         .legend { font: 12px 'Segoe UI', sans-serif; fill: #e6edf3; }
       </style>
+      <rect width="400" height="200" class="bg" rx="10" />
       
-      <text x="150" y="20" text-anchor="middle" class="title">Atividade & Stats</text>
+      <text x="200" y="25" text-anchor="middle" class="title">Minhas Contribuições</text>
       
-      <g transform="translate(50, 20)">
-        <circle cx="100" cy="100" r="70" fill="none" stroke="#21262d" stroke-width="15" /><path d="M100,30 A70,70 0 1,1 99.99999999999999,30" fill="none" stroke="#2ecc71" stroke-width="15" />
-        <text x="100" y="95" text-anchor="middle" class="center">75</text>
-        <text x="100" y="115" text-anchor="middle" class="sub">Contribuições</text>
+      <g transform="translate(60, 20)">
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#21262d" stroke-width="15" />
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#2ecc71" stroke-width="15" />
+        <text x="100" y="95" text-anchor="middle" class="center">77</text>
+        <text x="100" y="115" text-anchor="middle" class="sub">Total</text>
       </g>
 
-      <g transform="translate(210, 80)">
+      <g transform="translate(240, 70)">
          
             <circle cx="0" cy="0" r="5" fill="#2ecc71" />
-            <text x="10" y="4" class="legend">Commits</text>
+            <text x="15" y="4" class="legend">Commits</text>
          
-            <circle cx="0" cy="20" r="5" fill="#3498db" />
-            <text x="10" y="24" class="legend">PRs</text>
+            <circle cx="0" cy="22" r="5" fill="#3498db" />
+            <text x="15" y="26" class="legend">PRs</text>
          
-            <circle cx="0" cy="40" r="5" fill="#e74c3c" />
-            <text x="10" y="44" class="legend">Issues</text>
+            <circle cx="0" cy="44" r="5" fill="#e74c3c" />
+            <text x="15" y="48" class="legend">Issues</text>
          
+         
+    <g transform="translate(0, 76)">
+      <text x="0" y="0" class="legend">&#11088; 3 Stars</text>
+      <text x="0" y="22" class="legend">&#128218; 7 Repos</text>
+    </g>
+  
       </g>
-    
-    <text x="210" y="160" class="legend">⭐ 3 Stars</text>
-    <text x="210" y="180" class="legend">📚 7 Repos</text>
-  </svg>
-    
+    </svg>
