@@ -12,22 +12,21 @@ jobs:
           user: Tiag0Sants
           template: classic
           
-          # Remove o "listão" vertical e foca no essencial
+          # Remove o "listão" de baixo para ficar minimalista
           base: header, repositories
           base_extracolumn: no
           
-          # Tenta forçar o layout horizontal
+          # Força o estilo horizontal (Columns)
           layout: columns
           
-          # Configuração de Linguagens (Estética)
+          # Configuração das Linguagens (Igual ao da Rafaella)
           plugin_languages: yes
           plugin_languages_sections: most-used
           plugin_languages_details: percentage
           plugin_languages_limit: 8
           
-          # Remove o bloco de erro e coloca conquistas compactas
+          # Remove o erro de Achievements usando o modo compacto
           plugin_achievements: yes
           plugin_achievements_display: compact
-          plugin_achievements_threshold: C
           
           config_timezone: America/Sao_Paulo
