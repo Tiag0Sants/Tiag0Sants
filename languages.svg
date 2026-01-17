@@ -13,7 +13,7 @@
       
       <g transform="translate(40, 20)">
         <circle cx="100" cy="100" r="70" fill="none" stroke="#21262d" stroke-width="15" />
-        <path d="M100,30 A70,70 0 0,1 117.31985601592828,167.82346634895265" fill="none" stroke="#e34c26" stroke-width="15" /><path d="M117.31985601592828,167.82346634895265 A70,70 0 0,1 51.43980383407634,49.58266817524936" fill="none" stroke="#563d7c" stroke-width="15" /><path d="M51.43980383407634,49.58266817524936 A70,70 0 0,1 90.79859485974916,30.607391290966987" fill="none" stroke="#b07219" stroke-width="15" /><path d="M90.79859485974916,30.607391290966987 A70,70 0 0,1 97.75083778921928,30.036143121254412" fill="none" stroke="#f1e05a" stroke-width="15" /><path d="M97.75083778921928,30.036143121254412 A70,70 0 0,1 99.99999999999999,30" fill="none" stroke="#3572A5" stroke-width="15" />
+        <path d="M100,30 A70,70 0 0,1 117.36272659596085,167.8125041946831" fill="none" stroke="#e34c26" stroke-width="15" /><path d="M117.36272659596085,167.8125041946831 A70,70 0 0,1 51.37903572760576,49.64126855030438" fill="none" stroke="#563d7c" stroke-width="15" /><path d="M51.37903572760576,49.64126855030438 A70,70 0 0,1 90.70528532861516,30.619827910435802" fill="none" stroke="#b07219" stroke-width="15" /><path d="M90.70528532861516,30.619827910435802 A70,70 0 0,1 97.75132932159673,30.0361273214519" fill="none" stroke="#f1e05a" stroke-width="15" /><path d="M97.75132932159673,30.0361273214519 A70,70 0 0,1 99.99999999999999,30" fill="none" stroke="#3572A5" stroke-width="15" />
         <text x="100" y="95" text-anchor="middle" class="center">5</text>
         <text x="100" y="115" text-anchor="middle" class="sub">Langs</text>
       </g>
@@ -30,7 +30,7 @@
             <text x="15" y="48" class="legend">Java: 59142</text>
          
             <circle cx="0" cy="66" r="5" fill="#f1e05a" />
-            <text x="15" y="70" class="legend">JavaScript: 9288</text>
+            <text x="15" y="70" class="legend">JavaScript: 9416</text>
          
             <circle cx="0" cy="88" r="5" fill="#3572A5" />
             <text x="15" y="92" class="legend">Python: 2994</text>
