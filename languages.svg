@@ -13,7 +13,7 @@
       
       <g transform="translate(40, 20)">
         <circle cx="100" cy="100" r="70" fill="none" stroke="#21262d" stroke-width="15" />
-        <path d="M100,30 A70,70 0 0,1 118.35554081654848,167.550530133612" fill="none" stroke="#e34c26" stroke-width="15" /><path d="M118.35554081654848,167.550530133612 A70,70 0 0,1 49.98897274356621,51.02146232525683" fill="none" stroke="#563d7c" stroke-width="15" /><path d="M49.98897274356621,51.02146232525683 A70,70 0 0,1 88.54513795734401,30.94360177663681" fill="none" stroke="#b07219" stroke-width="15" /><path d="M88.54513795734401,30.94360177663681 A70,70 0 0,1 95.5337231787012,30.142628367827" fill="none" stroke="#f1e05a" stroke-width="15" /><path d="M95.5337231787012,30.142628367827 A70,70 0 0,1 99.99999999999999,30" fill="none" stroke="#3572A5" stroke-width="15" />
+        <path d="M100,30 A70,70 0 0,1 118.35752172745003,167.5499918284688" fill="none" stroke="#e34c26" stroke-width="15" /><path d="M118.35752172745003,167.5499918284688 A70,70 0 0,1 49.98623265174258,51.024260336015544" fill="none" stroke="#563d7c" stroke-width="15" /><path d="M49.98623265174258,51.024260336015544 A70,70 0 0,1 88.54082994666146,30.94431651421681" fill="none" stroke="#b07219" stroke-width="15" /><path d="M88.54082994666146,30.94431651421681 A70,70 0 0,1 95.52929358398444,30.14291171153927" fill="none" stroke="#f1e05a" stroke-width="15" /><path d="M95.52929358398444,30.14291171153927 A70,70 0 0,1 99.99999999999999,30" fill="none" stroke="#3572A5" stroke-width="15" />
         <text x="100" y="95" text-anchor="middle" class="center">5</text>
         <text x="100" y="115" text-anchor="middle" class="sub">Langs</text>
       </g>
@@ -33,7 +33,7 @@
             <text x="15" y="70" class="legend">JavaScript: 9416</text>
          
             <circle cx="0" cy="88" r="5" fill="#3572A5" />
-            <text x="15" y="92" class="legend">Python: 5980</text>
+            <text x="15" y="92" class="legend">Python: 5986</text>
          
       </g>
     </svg>
